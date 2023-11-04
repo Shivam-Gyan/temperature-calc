@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature-calculator</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .main {
+            border-radius: 10px;
+            padding: 20px;
+            height: 250px;
+            text-align: center;
+
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(234, 228, 228, 0.244);
+
+        }
+
+        .temp {
+            display: flex;
+            gap: 10px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        i {
+            color: #fff;
+            font-size: 30px;
+        }
+
+        span {
+            color: rgb(255, 0, 106);
+        }
+
+        input {
+            font-weight: 600;
+            text-align: center;
+            height: 30px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        .icon {
+            background-color: #fff;
+            padding: 6.1px;
+            font-weight: 600;
+            border-radius: 0 6px 6px 0;
+            
+        }
+        .kelvin .icon {
+            padding: 6.1px 8.2px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-weight: 600;
+            border-radius: 6px;
+            color: #fff;
+            background-color: rgb(255, 0, 106);
+        }
+
+        button:hover {
+            color: rgb(255, 0, 106);
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="temp">
+            <h1>Temp<span>erat</span>ure Cal<span>cula</span>tor</h1>
+            <span>
+
+                <i class="fa-solid fa-temperature-high"></i> </span>
+        </div>
+        <div class="celcius">
+            <input type="number" name="" placeholder="Celcius">
+            <span class="icon">&#8451</span>
+        </div>
+        <div class="kelvin">
+            <input type="number" name="" placeholder="Kelvin">
+            <span class="icon">&#8490</span>
+
+        </div>
+        <div class="fahrenheit">
+            <input type="number" name="" placeholder="Fahrenheit">
+            <span class="icon">&#8457</span>
+
+        </div>
+        <button class="btn">
+            Clear All
+        </button>
+    </div>
+    <script>
+        const round = (number) => {
+            return Math.round(number * 100) / 100;
+        }
+        let celcius = document.querySelector(".celcius > input")
+        let fahren = document.querySelector(".fahrenheit > input")
+        let kelvin = document.querySelector(".kelvin > input")
+        let btn = document.querySelector(".btn")
+        celcius.addEventListener("input", () => {
+            let ctemp = parseFloat(celcius.value)
+            let ftemp = (ctemp * (9 / 5)) + 32;
+            let ktemp = ctemp + 273.15;
+            fahren.value = round(ftemp);
+            kelvin.value = round(ktemp);
+        })
+        fahren.addEventListener("input", () => {
+            let ftemp = parseFloat(fahren.value)
+            let ctemp = (ftemp - 32) * (5 / 9);
+            let ktemp = ctemp + 273.15;
+            celcius.value = round(ctemp);
+            kelvin.value = round(ktemp);
+        })
+        kelvin.addEventListener("input", () => {
+            let ktemp = parseFloat(kelvin.value)
+            let ctemp = ktemp - 273.15;
+            let ftemp = (ktemp - 273.15) * (9 / 5) + 32;
+            fahren.value = round(ftemp);
+            celcius.value = round(ctemp);
+        })
+        btn.addEventListener("click", () => {
+            console.log("hello");
+            celcius.value = "";
+            fahren.value = "";
+            kelvin.value = "";
+
+        })
+
+    </script>
+</body>
+
+</html>
